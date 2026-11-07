@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#101316" />
+  <title>Emberfall — Dragon Knight Survivors</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main id="game-shell" aria-label="Emberfall game">
+    <canvas id="game" aria-label="Dragon knight survivor game"></canvas>
+    <div class="vignette"></div>
+    <header class="topbar" id="topbar" hidden>
+      <div class="brand-mark"><span class="brand-icon">✦</span><span>EMBERFALL</span></div>
+      <div class="run-stats">
+        <div class="stat-chip"><span class="stat-label">WAVE</span><strong id="wave">01</strong></div>
+        <div class="stat-chip"><span class="stat-label">ELAPSED</span><strong id="timer">00:00</strong></div>
+        <div class="stat-chip kills-chip"><span class="stat-label">SOULS</span><strong id="kills">0</strong></div>
+      </div>
+      <button class="icon-button" id="pause-button" aria-label="Pause game">Ⅱ</button>
+    </header>
+    <section class="health-panel" id="health-panel" hidden>
+      <div class="health-row"><span class="health-label">VITALITY</span><span id="health-text">100 / 100</span></div>
+      <div class="health-track"><div class="health-fill" id="health-fill"></div><i></i></div>
+      <div class="xp-row"><span>EMBER <b id="level">01</b></span><span id="xp-text">0 / 12</span></div>
+      <div class="xp-track"><div class="xp-fill" id="xp-fill"></div></div>
+    </section>
+    <aside class="objective-panel" id="objective-panel" hidden>
+      <div class="objective-kicker"><span class="live-dot"></span> THE HUNT</div>
+      <p>Survive the<br /><b>Emberfall</b></p>
+      <div class="objective-progress"><span id="objective-copy">First light · 6:00</span><div class="objective-track"><i id="objective-fill"></i></div></div>
+      <div class="passive-row"><span class="passive-icon">🐉</span><span><b>ASHWING</b><small>Fire familiar · auto-casts</small></span><span class="ready-dot"></span></div>
+    </aside>
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <div class="damage-flash" id="damage-flash"></div>
+    <section class="screen welcome-screen" id="welcome-screen">
+      <div class="welcome-content">
+        <div class="eyebrow"><span></span> A SURVIVOR'S OATH <span></span></div>
+        <h1>THE LAST<br /><em>DRAGON</em><br />KNIGHT</h1>
+        <p class="welcome-copy">The old kingdom has fallen. Hold the line<br class="desktop-break" /> until the first light—or become legend.</p>
+        <button class="primary-button" id="start-button"><span>BEGIN THE HUNT</span><b>↗</b></button>
+        <div class="control-hint"><span>WASD</span> MOVE <i>·</i> <span>SPACE</span> DASH <i>·</i> AUTO-ATTACK</div>
+      </div>
+      <div class="welcome-art-caption"><span>01 — ASHEN FRONTIER</span><span>THE YEAR OF CINDERS</span></div>
+      <div class="sound-toggle" id="sound-toggle"><span class="sound-icon">♪</span> SOUND <b>OFF</b></div>
+    </section>
+    <section class="screen modal-screen" id="level-screen" hidden>
+      <div class="modal-card upgrade-card">
+        <div class="modal-kicker">A SOUL REMEMBERED</div>
+        <h2>Choose your <em>boon</em></h2>
+        <p class="modal-subtitle">The embers answer your call. Choose one.</p>
+        <div class="upgrade-options" id="upgrade-options"></div>
+        <div class="choice-footnote">A WARRIOR'S GROWTH IS NEVER WITHOUT COST</div>
+      </div>
+    </section>
+    <section class="screen modal-screen" id="pause-screen" hidden>
+      <div class="modal-card compact-card">
+        <div class="modal-kicker">THE HUNT IS NOT OVER</div><h2>Take a <em>breath</em></h2>
+        <p class="modal-subtitle">The ash can wait a moment.</p>
+        <button class="primary-button" id="resume-button"><span>RETURN TO BATTLE</span><b>↗</b></button>
+        <p class="pause-hint">PRESS <kbd>ESC</kbd> TO RESUME</p>
+      </div>
+    </section>
+    <section class="screen modal-screen" id="end-screen" hidden>
+      <div class="modal-card compact-card end-card">
+        <div class="modal-kicker" id="end-kicker">A LEGEND FALLS</div><h2 id="end-title">The fire <em>fades</em></h2>
+        <p class="modal-subtitle" id="end-copy">The frontier remembers your name.</p>
+        <div class="run-summary"><div><small>TIME SURVIVED</small><b id="end-time">00:00</b></div><div><small>SOULS CLAIMED</small><b id="end-kills">0</b></div><div><small>EMBER LEVEL</small><b id="end-level">1</b></div></div>
+        <button class="primary-button" id="restart-button"><span>RISE AGAIN</span><b>↗</b></button>
+      </div>
+    </section>
+    <div class="mobile-controls" id="mobile-controls" hidden>
+      <div class="joystick" id="joystick"><div class="joystick-knob" id="joystick-knob"></div></div>
+      <button class="dash-button" id="dash-button"><span>✦</span><small>DASH</small></button>
+    </div>
+    <footer class="game-footer" id="game-footer" hidden><span>WASD / ARROWS <i>MOVE</i></span><span>SPACE <i>DASH</i></span><span>ESC <i>PAUSE</i></span><span class="footer-tip">STAY IN MOTION, KNIGHT</span></footer>
+  </main>
+  <script src="game.js"></script>
+</body>
+</html>
